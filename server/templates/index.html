@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Pryze</title>
+    </head>
+    <body>
+        <h1>
+            Welcome to Pryze!
+        </h1>
+            <div class='form'>
+                <form method='POST' action=''>
+                    <p>
+                        Please enter your name below to determine what Pryzes! are in store.
+                    </p>   
+                    {{ form.hidden_tag() }}
+                    {{ form.first_name.label }} {{ form.first_name }}     {{ form.submit }}
+                    <br>
+                    <br>
+                {{ message }}
+                </form>
+            </div>
+    </body>
+</html>
