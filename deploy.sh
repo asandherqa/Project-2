@@ -1,24 +1,22 @@
 #!/bin/bash
 
-project_name=pryze
-
 # Build server
-docker build -t ${project_name}_server server
+docker build -t pryze_server server
 
-# Build animal_api
-docker build -t ${project_name}_api ticket_api
+# Build ticket_api
+docker build -t pryze_ticker_api ticket_api
 
 # Create network
-docker network create ${project_name}_network
+docker network create pryze_network
 
 # Run containers
 docker run -d \
     -p 5000:5000 \
-    --name ${project_name}_server \
-    --network ${project_name}_network \
-    ${project_name}_server
+    --name pryze_server \
+    --network pryze_network \
+    pryze_server
 
 docker run -d \
-    --name ${project_name}_api \
-    --network ${project_name}_network \
-    ${project_name}_api
+    --name pryze_ticket_api \
+    --network pryze_network \
+    pryze_ticket_api

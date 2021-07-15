@@ -1,13 +1,14 @@
 import random
 
-def get_ticket():
-    length = 5
-    ticketx = []
-    while len(ticketx) < length:
-        num = random.randint(0, 9)
-        ticketx.append(num)
-    ticket = ''.join(map(str, ticketx))
-    return ticket
+def register():
+    error = ""
+    form = BasicForm()
 
-print(get_ticket())
+    if request.method == 'POST':
+
+        if len(first_name) == 0: 
+            error = "Please supply a first name (No numbers or special-characters)"
+        else:
+            return "See pryze below"
+
 
