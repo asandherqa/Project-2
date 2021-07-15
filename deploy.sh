@@ -4,7 +4,10 @@
 docker build -t pryze_server server
 
 # Build ticket_api
-docker build -t pryze_ticker_api ticket_api
+docker build -t pryze_ticket_api ticket_api
+
+# Build ticket_api
+docker build -t pryze_class_api ticket_api
 
 # Create network
 docker network create pryze_network
@@ -20,3 +23,8 @@ docker run -d \
     --name pryze_ticket_api \
     --network pryze_network \
     pryze_ticket_api
+
+docker run -d \
+    --name pryze_class_api \
+    --network pryze_network \
+    pryze_class_api

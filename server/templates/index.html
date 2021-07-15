@@ -12,14 +12,23 @@
                         Please enter your name below to determine what Pryzes! are in store.
                     </p>   
                     {{ form.hidden_tag() }}
-                    {{ form.first_name.label }} {{ form.first_name }}     {{ form.submit }}
-                    <br>
-                    <br>
-                {{ message }}
+                    {{ form.firstname.label }}
+                    {{ form.firstname }}
+                    {% if form.firstname.errors %}
+                    <div class='error'>
+                    {% for error in form.firstname.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                    {% endif %}
+                    {{ form.submit }}
                 </form>
             </div>
             <p>
                 Ticket No: {{ticket}}
+            </p>
+            <p>
+                Class: {{classserver}}
             </p>
     </body>
 </html>

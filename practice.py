@@ -1,14 +1,17 @@
 import random
 
-def register():
-    error = ""
-    form = BasicForm()
+def get_class():
 
-    if request.method == 'POST':
+    firstnameclass = "aaron"
 
-        if len(first_name) == 0: 
-            error = "Please supply a first name (No numbers or special-characters)"
-        else:
-            return "See pryze below"
+    class1 = ["Ferrari", "Lamborghini", "Aston Martin", "McLaren", "Bentley", "Porche"]
+    class2 = ["Candle", "Toaster", "Golf Clubs", "Speaker", "Headphones", "Book"]
+
+    if 1 < len(firstnameclass) <= 5:
+        return class1
+    else:
+        return class2
+
+print(get_class())
 
 
