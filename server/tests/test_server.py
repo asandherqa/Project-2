@@ -11,8 +11,9 @@ class TestBase(TestCase):
 class TestHome(TestBase):
     def test_home(self):
         with requests_mock.Mocker() as mocker:
-            mocker.get('http://animal_noises_api:5000/get_animal', text='sheep')
-            mocker.post('http://animal_noises_api:5000/get_noise', text='baaa')
+            mocker.get('http://pryze_ticket_api:5000/get_ticket', text = '39403')
+            mocker.post('http://pryze_class_api:5000/get_class', text = 'Porsche')
+            mocker.post('http://pryze_prize_api:5000/get_prize', text = '911')
             response = self.client.get(url_for('home'))
             self.assertEqual(response.status_code, 200)
-            self.assertIn(b'The sheep goes baaa', response.data)
+            self.assertIn(b'A Porsche 911, Good luck!', response.data)

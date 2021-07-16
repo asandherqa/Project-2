@@ -31,7 +31,7 @@ class SpecialCheck:
         self.special = special
         if not message:
             message = 'No special characters'
-        self.message = message
+        self.message = message 
     
     def __call__(self, form, field):
         firstname = field.data.lower()
@@ -56,21 +56,17 @@ class myForm(FlaskForm):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    ticket = requests.get('http://pryze_ticket_api:5000/get_ticket')
-    classserver = requests.post('http://pryze_class_api:5000/get_class', data=)
 
     form = myForm()
     if form.validate_on_submit():
         firstname = form.firstname.data
-        return render_template('index.html', form = form, firstname=firstname, ticket=ticket.text, classserver=classserver.text)
+        if request.method == 'POST':
+            ticket = requests.get('http://pryze_ticket_api:5000/get_ticket')
+            brand = requests.post('http://pryze_class_api:5000/get_class', data=firstname)
+            model = requests.post('http://pryze_prize_api:5000/get_prize', data=brand.text)
+            return render_template('index.html', form = form, firstname=firstname, ticket=ticket.text, brand=brand.text, model=model.text)
     else:
-        return render_template('index.html', form = form, firstname="", ticket=ticket.text, classserver=classserver.text)
-
-@app.route('/firstname', methods=['POST'])
-def firstname():
-    form = myForm()
-    firstnameserver = form.firstname.data
-    return firstnameserver[request.data.decode('utf-8')]
+        return render_template('index.html', form = form, firstname="", ticket="", brand="", model="")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
