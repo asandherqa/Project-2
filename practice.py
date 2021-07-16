@@ -2,16 +2,14 @@ import random
 
 def get_class():
 
-    firstnameclass = "aaron"
+    firstnameclass = 'ben'
 
-    class1 = ["Ferrari", "Lamborghini", "Aston Martin", "McLaren", "Bentley", "Porche"]
-    class2 = ["Candle", "Toaster", "Golf Clubs", "Speaker", "Headphones", "Book"]
+    car = random.choice(['Ferrari', 'Lamborghini', 'McLaren'])
+    watch = random.choice(['Rolex', 'Audemars Piguet', 'Richard Mille'])
 
-    if 1 < len(firstnameclass) <= 5:
-        return class1
+    if 1 < len(firstnameclass) < 5:
+        return car
     else:
-        return class2
+        return watch
 
 print(get_class())
-
-

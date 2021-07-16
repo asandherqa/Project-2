@@ -1,21 +1,23 @@
-from flask import Flask
+from flask import Flask, request
 import random
+import requests
 
 app = Flask(__name__)
 
 @app.route('/get_class', methods = ['GET', 'POST'])
 def get_class():
 
-    firstnameclass = requests.post('http://pryze_server:5000/firstname')
-    return firstnameclass
+    # firstnameclass = requests.get('http://pryze_server:5000/firstname')
+    # firstnameclass = firstnameclass.text
+    classname = request.data.decode('utf-8')
 
-    # class1 = ["Ferrari", "Lamborghini", "Aston Martin", "McLaren", "Bentley", "Porche"]
-    # class2 = ["Candle", "Toaster", "Golf Clubs", "Speaker", "Headphones", "Book"]
+    car = random.choice(['Ferrari', 'Lamborghini', 'McLaren'])
+    watch = random.choice(['Rolex', 'Audemars Piguet', 'Richard Mille'])
 
-    # if 1 < len(firstnameclass) <= 5:
-    #     return class1[request.data.decode('utf-8')]
-    # else:
-    #     return class2[request.data.decode('utf-8')]
+    if len(classname) < 5:
+        return car
+    else:
+        return watch
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
