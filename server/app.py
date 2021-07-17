@@ -4,25 +4,32 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
 import requests
-import os
-# from sqlalchemy import desc
+from os import getenv
+import os 
+from sqlalchemy import desc
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URI')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URI')
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-# db = SQLAlchemy(app)
+db = SQLAlchemy(app)
+
+class Raffle(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ticket = db.Column(db.String(50), nullable=False)
+    brand = db.Column(db.String(50), nullable=False)
+    model = db.Column(db.String(50), nullable=False)
 
 class UserCheck:
-    def __init__(self, banned, message=None):# Here we set up the class to have the banned and message attributes. banned must be passed through at declaration.
+    def __init__(self, banned, message=None):
         self.banned = banned
         if not message:
-            message = 'Please choose another first name' # If no message chosen, then this default message is returned.
+            message = 'Please choose another first name' 
         self.message = message
 
     def __call__(self, form, field):
-    # Here we define the method that is ran when the class is called. If the data in our field is in the list of words then raise a ValidationError object with a message.
         if field.data.lower() in (word.lower() for word in self.banned):
             raise ValidationError(self.message)
 
@@ -42,7 +49,6 @@ class SpecialCheck:
 class myForm(FlaskForm):
     firstname = StringField('First name', validators=[
         DataRequired(),
-        # We call our custom validator here, and pass through a message to override the default one. We pass through the list of banned usernames as a list.
         UserCheck(message="Cant use this first name",banned = ['root','admin','sys']),
         Length(min=2,max=15),
         SpecialCheck(special=['!','?','*','"','£','$','%','^','&'])
@@ -64,7 +70,18 @@ def home():
             ticket = requests.get('http://pryze_ticket_api:5000/get_ticket')
             brand = requests.post('http://pryze_class_api:5000/get_class', data=firstname)
             model = requests.post('http://pryze_prize_api:5000/get_prize', data=brand.text)
-            return render_template('index.html', form = form, firstname=firstname, ticket=ticket.text, brand=brand.text, model=model.text)
+            
+            last_five_entries = Raffle.query.order_by(desc(Raffle.id)).limit(5).all()
+            db.session.add(
+                Raffle(
+                    ticket = ticket.text,
+                    brand = brand.text,
+                    model = model.text
+                )
+            )
+            db.session.commit()
+
+            return render_template('index.html', form = form, firstname=firstname, ticket=ticket.text, brand=brand.text, model=model.text, last_five_entries=last_five_entries)
     else:
         return render_template('index.html', form = form, firstname="", ticket="", brand="", model="")
 

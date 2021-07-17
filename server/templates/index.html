@@ -33,5 +33,14 @@
             <p>
                 A {{brand}} {{model}}, Good luck!
             </p>
+        <h2>
+                The last five Pryze raffle entries
+        </h2>
+            <p>
+                {% for entry in last_five_entries %}
+                Ticket number {{entry.ticket}} entered into a Pryze raffle to win a {{entry.brand}} {{entry.model}}
+                <br>
+                {% endfor %}
+            </p>
     </body>
 </html>

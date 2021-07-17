@@ -7,8 +7,6 @@ app = Flask(__name__)
 @app.route('/get_class', methods = ['GET', 'POST'])
 def get_class():
 
-    # firstnameclass = requests.get('http://pryze_server:5000/firstname')
-    # firstnameclass = firstnameclass.text
     classname = request.data.decode('utf-8')
 
     car = random.choice(['Ferrari', 'Lamborghini', 'McLaren'])

@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+    server:
+        container_name: pryze_server
+        image: asandherqa/pryze_server
+        build: ./server
+        deploy:
+          replicas: 5
+        ports:
+        - published: 5000
+          target: 5000
+        environment:
+          DATABASE_URI: ${DATABASE_URI}
+    prize_api:
+        container_name: pryze_prize_api
+        image: asandherqa/pryze_prize_api
+        build: ./prize_api
+        deploy:
+            replicas: 5
+    class_api:
+        container_name: pryze_class_api
+        image: asandherqa/pryze_class_api
+        build: ./class_api
+        deploy:
+            replicas: 5
+    ticket_api:
+        container_name: pryze_ticket_api
+        image: asandherqa/pryze_ticket_api
+        build: ./ticket_api
+        deploy:
+            replicas: 5
+            

@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 
 @app.route('/get_prize', methods = ['POST'])
-def get_class():
+def get_prize():
 
     brands = request.data.decode('utf-8')
     if brands == 'Ferrari':

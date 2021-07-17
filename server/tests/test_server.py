@@ -16,4 +16,5 @@ class TestHome(TestBase):
             mocker.post('http://pryze_prize_api:5000/get_prize', text = '911')
             response = self.client.get(url_for('home'))
             self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Ticket number: 39403', response.data)
             self.assertIn(b'A Porsche 911, Good luck!', response.data)
