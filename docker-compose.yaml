@@ -27,6 +27,5 @@ services:
         container_name: pryze_ticket_api
         image: asandherqa/pryze_ticket_api
         build: ./ticket_api
-        deploy:
-            replicas: 5
+
             
