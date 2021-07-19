@@ -55,7 +55,7 @@ A Trello board was used to organise, prioritize and monitor tasks of the project
 
 Below is a outline for the application:
 
-![app_diagram](./images/app_diagram.PNG)
+![app_diagram](./images/app_diagram.png)
 
 #### Pryze Raffle
 * Service 1 (front-end): displays the results of the following 3 services for the user to see, as well as a brief history of past results and allows user to enter their name
@@ -68,7 +68,7 @@ Below is a outline for the application:
 
 The diagram below oultines the CI pipe intended for the application.
 
-![ci pipeline](./images/CI-Pipline.png)
+![ci pipeline](./images/CI-Pipeline.png)
 
 #### NGINX Interactions Diagram
 The diagram below represents the structure of virtual machines used in this project, whereby a user would connect to the NGINX machine on port 80. NGINX acts as a load balancer and distributes work between the manager and worker virtual machines. NGINX adds a layer of security from users accessing the back-end of the application.
@@ -83,7 +83,7 @@ Ansible is a configuration management tool. Also Ansible is agentless which allo
 
 Jenkins is a powerful tool, in this project it can be used to preform a rolling update ensuring that the service has no downtime. Below are the stages of my Jenkinsfile.
 
-![jenkins](./images/jenkins.png)
+![jenkins](./images/jenkins.PNG)
 
 ## __Development__
 
@@ -91,7 +91,7 @@ Jenkins is a powerful tool, in this project it can be used to preform a rolling 
 
 Below is the front-end of my application.
 
-![pryze_homepage](./images/pryze_homepage.png)
+![pryze_homepage](./images/pryze_hompage.PNG)
 
 ### __Testing__
 
@@ -101,10 +101,10 @@ Server
 ![pytest_server_result](./images/pytest_server_result.png)
 
 Ticket_API
-![pytest_test_ticket](./images/pytest_test_ticket.png)
+![pytest_test_ticket](./images/pytest_test_ticket.PNG)
 
 Class_API
-![pytest_class](./images/pytest_class.png)
+![pytest_class](./images/pytest_class.PNG)
 
 Prize_API
-![pytest_prize](./images/pytest_prizet.png)
+![pytest_prize](./images/pytest_prizet.PNG)
