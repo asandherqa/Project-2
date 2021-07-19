@@ -5,7 +5,7 @@ services:
         image: asandherqa/pryze_server
         build: ./server
         deploy:
-          replicas: 5
+          replicas: 3
         ports:
         - published: 5000
           target: 5000
@@ -16,16 +16,17 @@ services:
         image: asandherqa/pryze_prize_api
         build: ./prize_api
         deploy:
-            replicas: 5
+            replicas: 3
     class_api:
         container_name: pryze_class_api
         image: asandherqa/pryze_class_api
         build: ./class_api
         deploy:
-            replicas: 5
+            replicas: 3
     ticket_api:
         container_name: pryze_ticket_api
         image: asandherqa/pryze_ticket_api
         build: ./ticket_api
-
+        deploy:
+            replicas: 3
             
