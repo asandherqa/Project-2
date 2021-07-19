@@ -107,4 +107,4 @@ Class_API
 ![pytest_class](./images/pytest_class.PNG)
 
 Prize_API
-![pytest_prize](./images/pytest_prizet.PNG)
+![pytest_prize](./images/pytest_prize.PNG)
