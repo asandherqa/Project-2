@@ -98,9 +98,7 @@ Below is the front-end of my application.
 Seen below are results for mock testing of the services:
 
 Server
-![pytest_server_result](./images/pytest_server _result.PNG)
-
-images/pytest_server _result.PNG
+![pytest_server_result](./images/pytest_server_result.PNG)
 
 Ticket_API
 ![pytest_test_ticket](./images/pytest_test_ticket.PNG)
